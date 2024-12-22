@@ -38,7 +38,7 @@ void print_first_10(vector<ll> first, vector<ll> second, vector<ll> result)  {
 int main()  {
 
     // SETTING UP VECTORS
-    int num_values = 1600000;
+    int num_values = 160000000;
     vector<ll> first, second, result(num_values);
 
     random_device rd;
@@ -54,13 +54,15 @@ int main()  {
     int num_threads = thread::hardware_concurrency();
     int thread_operations = num_values/num_threads;
     vector<thread> threads;
+
+    // TIME BENCHMARK FOR VECTORIZATION
     auto vectorization_start = high_resolution_clock::now();
     for (int i=0; i<num_threads; i++)  {
         int start = i*thread_operations;
         int end = start + thread_operations;
         threads.emplace_back(vector_addition,cref(first),cref(second),ref(result),start,end);
     }
-    // TIME BENCHMARK FOR VECTORIZATION
+
     for (auto &thread : threads)    {
         thread.join();
     }
@@ -82,4 +84,8 @@ int main()  {
 
     cout << "Time taken for non-vectorized implementation: " << regular_duration.count() << " milliseconds " << endl;
     print_first_10(first,second,result);
+
+    /*
+        NOTE: Difference exists mainly for >10000000 values in vector
+    */
 }
