@@ -1,1 +1,1 @@
-These are a few mini projects I am making as practice for deep learning projects in C++, like creating a vectorized addition and multiplication algorithm using multi-threadin, which I hope to use in my projects in the future to enhance computational efficiency.
+These are a few mini projects I am making as practice for deep learning projects in C++, like creating a vectorized addition and multiplication algorithm using multi-threading, which I hope to use in my projects in the future to enhance computational efficiency.
